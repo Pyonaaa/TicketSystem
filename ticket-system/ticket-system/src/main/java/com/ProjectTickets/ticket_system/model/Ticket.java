@@ -12,12 +12,31 @@ public class Ticket {
     private Long id;
 
     private Integer price;
-
+    @Enumerated(EnumType.STRING)
     private TicketType ticketType;
 
     private String seatNumber;
-
+    @Enumerated(EnumType.STRING)
     private TicketStatus ticketStatus;
+
+public Ticket(){
+
+}
+
+    public Ticket(Integer price, TicketType ticketType, String seatNumber, TicketStatus ticketStatus) {
+        this.price = price;
+        this.ticketType = ticketType;
+        this.seatNumber = seatNumber;
+        this.ticketStatus = ticketStatus;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setPrice(Integer price) {
         this.price = price;
@@ -49,5 +68,16 @@ public class Ticket {
 
     public TicketStatus getTicketStatus() {
         return ticketStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", price=" + price +
+                ", ticketType=" + ticketType +
+                ", seatNumber='" + seatNumber + '\'' +
+                ", ticketStatus=" + ticketStatus +
+                '}';
     }
 }

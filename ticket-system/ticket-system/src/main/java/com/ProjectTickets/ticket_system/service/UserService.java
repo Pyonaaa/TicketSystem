@@ -25,7 +25,7 @@ public class UserService {
     public void addNewUser(User user) {
         Optional<User> userByEmail= userRepository.findUserByEmail(user.getEmail());
         if(userByEmail.isPresent()){
-            throw new IllegalStateException("email has already been used");
+            throw new IllegalStateException("Email has already been used");
         }
         userRepository.save(user);
     }
@@ -33,7 +33,7 @@ public class UserService {
     public void deleteUser(Long userId) {
         boolean exist = userRepository.existsById(userId);
     if(!exist){
-        throw new IllegalStateException("user with this id does not exist");
+        throw new IllegalStateException("User with this id does not exist");
     }
 userRepository.deleteById(userId);
     }

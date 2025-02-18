@@ -18,14 +18,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/user/**", "/event/**")) // Wyłącz CSRF dla /user
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/user/**", "/event/**","/ticket/**"))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/**").permitAll()
-                        .requestMatchers("/event/**").permitAll()// Zezwól na wszystkie operacje na /user
+                        .requestMatchers("/event/**").permitAll()
+                        .requestMatchers("/ticket/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .httpBasic(httpBasic -> httpBasic.disable()) // Włączenie Basic Auth
-                .formLogin(form -> form.disable()); // Wyłączenie logowania przez formularz
+                .httpBasic(httpBasic -> httpBasic.disable())
+                .formLogin(form -> form.disable());
 
         return http.build();
     }

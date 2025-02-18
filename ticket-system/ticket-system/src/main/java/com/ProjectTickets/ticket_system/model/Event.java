@@ -14,18 +14,27 @@ public class Event {
     private int capacity;
     private String eventName;
     private String location;
-    private String dateTime;
+    private LocalDateTime dateTime;
+
     private String category;
 
     public Event() {
     }
 
-    public Event(int capacity, String eventName, String location, String dateTime, String category) {
+    public Event(int capacity, String eventName, String location, LocalDateTime dateTime, String category) {
         this.capacity = capacity;
         this.eventName = eventName;
         this.location = location;
         this.dateTime = dateTime;
         this.category = category;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     // Getters and setters
@@ -57,13 +66,7 @@ public class Event {
         this.location = location;
     }
 
-    public String getDateTime() {
-        return dateTime;
-    }
 
-    public void setDateTime(String dateTime) {
-        this.dateTime = dateTime;
-    }
 
     public String getCategory() {
         return category;
