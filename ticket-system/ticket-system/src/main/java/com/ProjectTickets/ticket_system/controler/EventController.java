@@ -6,6 +6,7 @@ import com.ProjectTickets.ticket_system.service.EventService;
 import com.ProjectTickets.ticket_system.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,12 +28,14 @@ public class EventController {
 
     }
 
-    @PostMapping
+    @PostMapping("/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public void registerNewEvent(@RequestBody Event event) {
         eventService.addNewEvent(event);
     }
 
     @DeleteMapping(path = "{eventId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteEvent(@PathVariable("eventId") Long eventId) {
         eventService.deleteEvent(eventId);
     }

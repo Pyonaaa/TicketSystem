@@ -3,6 +3,7 @@ package com.ProjectTickets.ticket_system.service;
 import com.ProjectTickets.ticket_system.model.User;
 import com.ProjectTickets.ticket_system.model.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,10 +13,12 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<User> getUser(){
@@ -27,6 +30,8 @@ public class UserService {
         if(userByEmail.isPresent()){
             throw new IllegalStateException("Email has already been used");
         }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 

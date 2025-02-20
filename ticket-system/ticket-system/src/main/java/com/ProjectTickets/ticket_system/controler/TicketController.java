@@ -7,6 +7,7 @@ import com.ProjectTickets.ticket_system.model.Ticket;
 import com.ProjectTickets.ticket_system.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,18 +22,21 @@ public class TicketController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public List<Ticket> getTicket() {
         return ticketService.getTicket();
 
     }
 
-    @PostMapping
+    @PostMapping("/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public void registerNewTicket(@RequestBody Ticket ticket) {
         ticketService.addNewTicket(ticket);
 
     }
 
     @DeleteMapping(path = "{ticketId}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void deleteEvent(@PathVariable("ticketId") Long ticketId) {
         ticketService.deleteTicket(ticketId);
     }
