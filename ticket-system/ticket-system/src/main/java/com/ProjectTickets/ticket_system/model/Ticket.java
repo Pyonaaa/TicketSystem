@@ -18,16 +18,38 @@ public class Ticket {
     private String seatNumber;
     @Enumerated(EnumType.STRING)
     private TicketStatus ticketStatus;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id")
+    private Event event;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-public Ticket(){
+    public Ticket() {
 
-}
+    }
 
     public Ticket(Integer price, TicketType ticketType, String seatNumber, TicketStatus ticketStatus) {
         this.price = price;
         this.ticketType = ticketType;
         this.seatNumber = seatNumber;
         this.ticketStatus = ticketStatus;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getId() {

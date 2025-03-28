@@ -2,6 +2,8 @@ package com.ProjectTickets.ticket_system.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -17,7 +19,6 @@ public class Event {
     private LocalDateTime dateTime;
 
     private String category;
-
     public Event() {
     }
 
@@ -37,7 +38,7 @@ public class Event {
         return dateTime;
     }
 
-    // Getters and setters
+
     public Long getId() {
         return id;
     }
