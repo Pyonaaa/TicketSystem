@@ -39,9 +39,18 @@ public class TicketService {
             ticket.setPrice(price);
             ticket.setTicketType(ticketType);
             ticket.setTicketStatus(TicketStatus.ACTIVE);
-            ticketRepository.save(ticket);
+            String qrFilePath = "D:\\qrcodes\\" + ticket.getUuid() + ".jpg";
+
+            try {
+                QrCodeGenerator.generateQrCode(ticket.getUuid(), qrFilePath);
+                ticket.setQrCodePath(qrFilePath);
+                ticketRepository.save(ticket);
+            } catch (Exception e) {
+                throw new RuntimeException("Failed to generate QR code", e);
+            }
         }
-    }
+        }
+
 
     public void deleteTicket(Long ticketId) {
         boolean exist = ticketRepository.existsById(ticketId);
