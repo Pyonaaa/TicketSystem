@@ -54,3 +54,54 @@ To run the application locally, follow these steps:
    ```bash
    git clone https://github.com/Pyonaaa/ProjectTickets.git
    cd ProjectTickets
+2. **Build the project**
+   ```bash
+   mvn clean install
+
+3. **Run the application**
+ ```bash
+   mvn spring-boot:run
+```
+
+## API Endpoints
+
+### 1. **Events**
+
+- **GET** `/event`  
+  Get a list of all events.
+
+- **POST** `/event/save`  
+  Create a new event (accessible by ADMIN only).
+
+- **DELETE** `/event/{eventId}`  
+  Delete an event (accessible by ADMIN only).
+
+### 2. **Tickets**
+
+- **GET** `/ticket`  
+  Get a list of all tickets.
+
+- **POST** `/ticket/save`  
+  Add tickets to an event (accessible by ADMIN only).
+
+- **GET** `/ticket/{ticketId}/qr`  
+  Get the QR code for a ticket.
+
+- **DELETE** `/ticket/{ticketId}`  
+  Delete a ticket (accessible by ADMIN only).
+
+- **POST** `/ticket/buy`  
+  Buy a ticket (accessible by USER only).
+
+### 3. **Users**
+
+- **GET** `/user`  
+  Get a list of all users (accessible by ADMIN only).
+
+- **POST** `/user/save`  
+  Register a new user.
+
+- **DELETE** `/user/{userId}`  
+  Delete a user (accessible by ADMIN only).
+
+
